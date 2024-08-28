@@ -23,12 +23,16 @@ const assetsToLoad = [
   },
 ];
 
-const assetStore = createStore(() => ({
+const assetStore = createStore((set) => ({
   assetsToLoad,
   loadAssets: {},
-  addLoadedAsset: (asset) => {
-    console.log('addLoadedAsset' + asset);
-  },
+  addLoadedAsset: (asset, id) =>
+    set((state) => ({
+      loadedAssets: {
+        ...state.loadedAssets,
+        [id]: asset,
+      },
+    })),
 }));
 
 export default assetStore;
